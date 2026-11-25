@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handover | CampusFind</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .handover-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 25px;
+        }
+
+        .handover-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .handover-heading h1 {
+            color: #6545c5;
+            font-size: 35px;
+        }
+
+        .handover-box {
+            background: linear-gradient(135deg, #fff, #f1edff);
+            border: 1px solid #ded5ff;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+
+        .handover-box h2 {
+            color: #6545c5;
+        }
+
+        .handover-box input,
+        .handover-box textarea {
+            width: 100%;
+            padding: 13px;
+            margin: 10px 0 18px;
+            border: 1px solid #d6cafa;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        .handover-box button {
+            background: #7654d6;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .handover-box button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .handover-info {
+            background: #eee9ff;
+            padding: 18px;
+            border-radius: 12px;
+        }
+
+        #handoverMessage {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <a class="brand" href="index.html">
+        Campus<span>Find</span>
+    </a>
+
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="search-items.html">Browse Items</a>
+        <a href="my-claims.html">My Claims</a>
+        <a href="admin.html">Admin</a>
+        <button id="logoutBtn" class="link-button">Logout</button>
+    </nav>
+</header>
+
+<main class="handover-container">
+
+    <div class="handover-heading">
+        <p class="eyebrow">FINAL STEP</p>
+        <h1>🤝 Item Handover</h1>
+        <p class="muted">
+            Complete the safe return of lost belongings
+            to their rightful owners.
+        </p>
+    </div>
+
+    <div class="handover-box">
+
+        <h2>Handover Details</h2>
+
+        <form id="handoverForm">
+
+            <label>Approved Claim ID</label>
+            <input
+                type="text"
+                id="claimId"
+                name="claimId"
+                placeholder="Enter approved claim ID"
+                required
+            >
+
+            <label>Handover Location</label>
+            <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="Example: College Library"
+                required
+            >
+
+            <label>Handover Notes</label>
+            <textarea
+                id="notes"
+                name="notes"
+                rows="4"
+                placeholder="Example: Item returned to the verified owner."
+            ></textarea>
+
+            <button type="submit" id="handoverBtn">
+                Confirm Handover →
+            </button>
+
+            <p id="handoverMessage"></p>
+
+        </form>
+    </div>
+
+    <div class="handover-info">
+        <h3>📌 Handover Guidelines</h3>
+        <p>1. Verify the approved ownership claim.</p>
+        <p>2. Confirm the item's identity with the owner.</p>
+        <p>3. Arrange the return through campus staff.</p>
+        <p>4. Record the completed handover.</p>
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 CampusFind | Smart Campus Lost and Found Portal</p>
+</footer>
+
+<script>
+const API_BASE = "http://localhost:5000/api";
+
+const form = document.getElementById("handoverForm");
+const message = document.getElementById("handoverMessage");
+const button = document.getElementById("handoverBtn");
+
+form.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const token = localStorage.getItem("campusfind_token");
+
+    if (!token) {
+        message.textContent = "Please login first.";
+        message.style.color = "red";
+        return;
+    }
+
+    const claimId = document.getElementById("claimId").value.trim();
+    const location = document.getElementById("location").value.trim();
+    const notes = document.getElementById("notes").value.trim();
+
+    if (!claimId || !location) {
+        message.textContent = "Please enter all required details.";
+        message.style.color = "red";
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Saving Handover...";
+
+    message.textContent = "";
+
+    try {
+
+        const response = await fetch(`${API_BASE}/handovers`, {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+
+            body: JSON.stringify({
+                claimId,
+                location,
+                notes
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Handover could not be saved.");
+        }
+
+        message.textContent =
+            "✅ " + (data.message || "Handover saved successfully!");
+
+        message.style.color = "green";
+
+        form.reset();
+
+    } catch (error) {
+
+        console.error("Handover Error:", error);
+
+        message.textContent = "❌ " + error.message;
+        message.style.color = "red";
+
+    } finally {
+
+        button.disabled = false;
+        button.textContent = "Confirm Handover →";
+
+    }
+
+});
+</script>
+
+</body>
+</html>

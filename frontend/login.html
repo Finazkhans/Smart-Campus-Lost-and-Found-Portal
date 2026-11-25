@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | CampusFind</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <a class="brand" href="index.html">Campus<span>Find</span></a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="register.html">Register</a>
+    </nav>
+</header>
+
+<main class="auth-wrap">
+    <section class="auth-card">
+        <div class="auth-icon">👋</div>
+        <p class="eyebrow">WELCOME BACK</p>
+        <h1>Login to CampusFind</h1>
+        <p class="muted">Access your campus account.</p>
+
+        <form id="loginForm">
+            <label>Email Address</label>
+            <input type="email" name="email"
+                   placeholder="Enter your email" required>
+
+            <label>Password</label>
+            <input type="password" name="password"
+                   placeholder="Enter your password" required>
+
+            <button type="submit" class="btn full">
+                Login →
+            </button>
+
+            <p id="formMessage" class="message"></p>
+        </form>
+
+        <p class="muted">
+            Don't have an account?
+            <a href="register.html">Register here</a>
+        </p>
+
+        <a href="index.html">← Back to Home</a>
+    </section>
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>

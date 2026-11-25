@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | CampusFind</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <a class="brand" href="index.html">Campus<span>Find</span></a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+    </nav>
+</header>
+
+<main class="auth-wrap">
+    <section class="auth-card">
+        <div class="auth-icon">🎓</div>
+        <p class="eyebrow">JOIN YOUR CAMPUS</p>
+        <h1>Create Account</h1>
+        <p class="muted">Register as a student.</p>
+
+        <form id="registerForm">
+            <label>Full Name</label>
+            <input type="text" name="name"
+                   placeholder="Enter your name" required>
+
+            <label>Email Address</label>
+            <input type="email" name="email"
+                   placeholder="Enter your email" required>
+
+            <label>Student ID</label>
+            <input type="text" name="studentId"
+                   placeholder="Enter student ID">
+
+            <label>Password</label>
+            <input type="password" name="password"
+                   minlength="8" placeholder="At least 8 characters"
+                   required>
+
+            <button type="submit" class="btn full">
+                Create Account →
+            </button>
+
+            <p id="formMessage" class="message"></p>
+        </form>
+
+        <p class="muted">
+            Already have an account?
+            <a href="login.html">Login here</a>
+        </p>
+    </section>
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>

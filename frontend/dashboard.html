@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | CampusFind</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <a class="brand" href="index.html">Campus<span>Find</span></a>
+    <nav>
+        <a href="search-items.html">Browse Items</a>
+        <a href="my-claims.html">My Claims</a>
+        <button class="link-button" id="logoutBtn">Logout</button>
+    </nav>
+    <a href="admin.html" id="adminDashboardLink" hidden>
+    Admin Dashboard
+</a>
+</header>
+
+<main class="section">
+    <p class="eyebrow">STUDENT SPACE</p>
+    <h1 id="welcome">Your Dashboard</h1>
+    <p class="muted">What would you like to do today?</p>
+
+    <div class="steps dashboard-grid">
+
+        <a href="report-lost.html" class="panel tile">
+            <div class="step-icon">📢</div>
+            <h3>Report Lost Item</h3>
+            <p>Tell us about something you have lost.</p>
+        </a>
+
+        <a href="report-found.html" class="panel tile">
+            <div class="step-icon">🎒</div>
+            <h3>Report Found Item</h3>
+            <p>Help someone recover their belongings.</p>
+        </a>
+
+        <a href="search-items.html" class="panel tile">
+            <div class="step-icon">🔍</div>
+            <h3>Search Items</h3>
+            <p>Browse lost and found reports.</p>
+        </a>
+
+        <a href="my-claims.html" class="panel tile">
+            <div class="step-icon">📋</div>
+            <h3>My Claims</h3>
+            <p>Check your submitted claims.</p>
+        </a>
+
+    </div>
+
+    <p id="pageMessage" class="message"></p>
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>

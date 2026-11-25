@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search Items | CampusFind</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <a class="brand" href="index.html">
+        Campus<span>Find</span>
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="report-lost.html">Report Lost</a>
+        <a href="report-found.html">Report Found</a>
+        <a href="my-claims.html">My Claims</a>
+    </nav>
+</header>
+
+<main class="section">
+
+    <p class="eyebrow">CAMPUS LISTINGS</p>
+
+    <h1>Find Your Lost Item</h1>
+
+    <p class="muted">
+        Search for lost and found items reported on your campus.
+    </p>
+
+    <form id="searchForm" class="search-row">
+
+        <input
+            type="text"
+            name="q"
+            placeholder="Search item name or location..."
+        >
+
+        <select name="type">
+            <option value="">All Reports</option>
+            <option value="lost">Lost Items</option>
+            <option value="found">Found Items</option>
+        </select>
+
+        <button type="submit" class="btn">
+            Search Items
+        </button>
+
+    </form>
+
+    <p id="pageMessage"></p>
+
+    <div id="itemsList" class="item-grid">
+        <p class="muted">Loading items...</p>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>© 2026 CampusFind | Smart Campus Lost and Found Portal</p>
+</footer>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
